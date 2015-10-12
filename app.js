@@ -6,10 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 var autoroute = require('express-autoroute');
+var dbContext=require("./dbContext");
 autoroute(app,{
     logger: logger
 });
 
+dbContext.initDatabase();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
