@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>UC</title>
+    <script type="text/javascript" src="http://js.pongo.com.cn/common/jquery-1.7.1.js"></script>
+    <script type="text/javascript">
+        function goto() {
+            var url = $('#url').val();
+            var params = $('#paramsval').attr('value');
+
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType:"application/json;charset=utf-8",
+                data: params,
+                //async: false,
+                datatype: "json",
+                success: function (data) {
+                    $('#result').html(data);
+                    //alert(1);
+                }
+                , error: function () {
+                    alert("数据获取失败，请重试");
+                    return false;
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <p>
+        <span>API地址：</span><input type="text" id="url" name="url" style="width:800px" />
+    </p>
+
+    <div id="params">
+        <p>
+            <textarea id="paramsval" name="paramsval" style="width:900px;height:200px"></textarea>
+        </p>
+    </div>
+    <p>
+        <a href="#nogo" onclick="goto()">提交</a>
+    </p>
+
+</div>
+<div>
+    <span>返回结果</span>
+    <p>
+    <div id="result">
+    </div>
+    </p>
+</div>
+</body>
+</html>

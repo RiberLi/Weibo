@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>UC</title>
+    <script type="text/javascript" src="http://js.pongo.com.cn/common/jquery-1.7.1.js"></script>
+    <script type="text/javascript">
+        function AddParams() {
+            var str = '<p><span>参数名：</span><input type="text" p="n" value="" /><span>，参数值：</span></span><input type="text" p="s" value="" /></p>';
+            $('#params').append(str);
+        }
+        function goto() {
+            var url = $('#url').val();
+            var params = {};
+            $('#params').find('p').each(function () {
+                if ($(this).find('input[p="n"]').val() != '') {
+                    params[$(this).find('input[p="n"]').val()] = $(this).find('input[p="s"]').val();
+                }
+            });
+            params['random'] = Math.random()*100;
+
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType:"application/json;charset=utf-8",
+                data: JSON.stringify(params),
+                //async: false,
+                datatype: "json",
+                success: function (data) {
+                    $('#result').html(data);
+                    //alert(1);
+                }
+                , error: function () {
+                    alert("数据获取失败，请重试");
+                    return false;
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <p>
+        <span>API地址：</span><input type="text" id="url" name="url" style="width:800px" />
+    </p>
+    <p>
+        <a href="#nogo" onclick="AddParams()">增加参数</a>
+    </p>
+    <div id="params">
+        <p>
+            <span>参数名：</span><input type="text" p="n" value="" /><span>，参数值：</span></span><input type="text" p="s" value="" />
+        </p>
+    </div>
+    <p>
+        <a href="#nogo" onclick="goto()">提交</a>
+    </p>
+
+</div>
+<div>
+    <span>返回结果</span>
+    <p>
+    <div id="result">
+    </div>
+    </p>
+</div>
+</body>
+</html>
