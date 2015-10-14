@@ -1,7 +1,7 @@
-var dbContext=require("./dbContext");
-var users=dbContext.users;
+var models = require("../models");
+var User=models.User;
 module.exports.getUsers=function(params,err,callback){
-	users.findAll().then(function(users){
+	User.findAll().then(function(users){
          callback(users);
 	});	
 }
