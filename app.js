@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 var autoroute = require('express-autoroute');
-var dbContext=require("./dbContext");
 autoroute(app,{
     logger: logger
 });
