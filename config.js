@@ -1,7 +1,7 @@
 module.exports =
 {
   "env":"development",
-  "db": {
+  "dbconn": {
     "username": "root",
     "password": "root",
     "database": "nodejs",
